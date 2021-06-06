@@ -1,0 +1,178 @@
+.public-sidebar-container {
+   top: 0;
+   position: sticky;
+   flex-basis: 45rem;
+   border-right: 2px solid rgba(106, 106, 106, 0.3);
+   padding: 0 3rem 0 0;
+   height: 100vh;
+   /* background-color: chartreuse; */
+}
+
+.edit-icon-container-outter {
+   display: flex;
+}
+
+.edit-icon-container {
+   width: 3.5rem;
+   height: 3.5rem;
+}
+
+.asd {
+   flex: 1;
+}
+
+.public-sidebar-pp-name-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.public-sidebar-pp-container {
+   width: 15rem;
+   height: 15rem;
+}
+
+.public-sidebar-name-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.public-sidebar-name-account {
+   margin-top: 2rem;
+}
+
+.public-sidebar-name-account h1 {
+   color: white;
+}
+
+.public-sidebar-username-account {
+   margin-top: 1rem;
+}
+
+.public-sidebar-username-account p {
+   color: #ababab;
+   font-size: 1.6rem;
+}
+
+.public-sidebar-info-user {
+   padding-top: 2rem;
+   display: flex;
+   gap: 2rem;
+   justify-content: center;
+}
+
+.public-sidebar-flex-col {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   flex: 1;
+   color: #ababab;
+   gap: 1.6rem;
+}
+
+.public-sidebar-text-info {
+   font-size: 2rem;
+}
+
+.public-sidebar-number-info {
+   color: white;
+   font-size: 2rem;
+}
+
+.public-sidebar-follower-count-container {
+   border-right: 1px solid rgba(106, 106, 106, 0.3);
+   border-left: 1px solid rgba(106, 106, 106, 0.3);
+   padding: 0 2.5rem 0 2.5rem;
+}
+
+.bio-container {
+   margin-top: 3.5rem;
+   display: flex;
+   justify-content: center;
+   padding-left: 1.5rem;
+}
+
+.bio-container p {
+   font-size: 1.6rem;
+   color: white;
+}
+
+/* feed */
+
+.feed-explore-container {
+   padding: 4rem 3.2rem;
+   border-top: 1px solid rgba(106, 106, 106, 0.3);
+   border-bottom: 1px solid rgba(106, 106, 106, 0.3);
+   display: flex;
+   flex-direction: column;
+   gap: 5rem;
+   margin-top: 7rem;
+}
+
+.feed-container {
+   display: flex;
+   gap: 2rem;
+   align-items: center;
+}
+
+.feed-icon-container {
+   width: 4rem;
+   height: 4rem;
+}
+
+.explore-container {
+   display: flex;
+   gap: 2rem;
+   align-items: center;
+}
+
+.explore-icon-container {
+   width: 4rem;
+   height: 4rem;
+}
+
+.feed-text-container,
+.explore-text-container {
+   color: #ababab;
+   font-size: 1.6rem;
+}
+
+.logout-container {
+   padding: 0 3.2rem;
+   display: flex;
+   margin-top: 7rem;
+   align-items: center;
+   gap: 2rem;
+}
+
+.message-unfollow-container {
+   display: flex;
+   justify-content: space-evenly;
+   padding: 2rem 0;
+}
+
+.sidebar-message-button {
+   background-image: var(--button-color);
+   height: 5rem;
+   border-radius: 5px;
+   width: 14rem;
+   color: white;
+   display: flex;
+}
+
+.sidebar-follow-button {
+   background: rgba(171, 171, 171, 0.15);
+   height: 5rem;
+   border-radius: 5px;
+   width: 14rem;
+   color: white;
+
+   display: flex;
+}
+
+.sidebar-message-button p,
+.sidebar-follow-button p {
+   margin: auto;
+   font-size: 1.7rem;
+}

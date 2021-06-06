@@ -1,0 +1,42 @@
+.image-layout-container {
+   /* position: relative; */
+   column-count: 3;
+}
+
+.image-layout-model {
+   display: inline-block;
+   margin-bottom: 4rem;
+   overflow: hidden;
+   width: 40rem;
+}
+
+img {
+   width: 100%;
+   transition: 0.25s ease-in-out;
+   object-fit: cover;
+   height: 100%;
+}
+
+.style-1 {
+   height: 50rem;
+}
+
+.style-3 {
+   height: 35rem;
+}
+
+.style-5 {
+   height: 65rem;
+}
+
+.style-2 {
+   height: 30rem;
+}
+
+.style-4 {
+   height: 50rem;
+}
+
+.style-6 {
+   height: 35rem;
+}

@@ -1,0 +1,132 @@
+.navbar-container {
+   height: 7.5rem;
+   /* padding-top: 2rem; */
+   position: sticky;
+   top: 0;
+   z-index: 3;
+   background-color: var(--primary-color);
+}
+
+.navbar-contents {
+   height: 100%;
+   display: flex;
+   align-items: center;
+}
+
+.navbar-content-left-side {
+   flex-basis: 45rem;
+   /* padding-top: 2rem; */
+   height: 100%;
+}
+
+.icon-container-couter {
+   padding-top: 2rem;
+   display: flex;
+   align-items: center;
+   border-right: 2px solid rgba(106, 106, 106, 0.3);
+   height: 100%;
+   width: 100%;
+}
+
+.navbar-content-right-side {
+   flex: 1;
+   display: flex;
+   /* justify-content: center; */
+   padding: 0 0 0 3rem;
+   align-self: center;
+   /* height: 100%; */
+   /* background-color: greenyellow; */
+}
+
+.navbar-content-right-side-on-left {
+   flex: 1;
+}
+
+.icon-container {
+   width: 20rem;
+   height: 6rem;
+}
+
+.input-search-container {
+   width: 30rem;
+   height: 2.8rem;
+   border-radius: 5px;
+}
+
+.input-search-container input {
+   border-radius: 5px;
+}
+
+.navbar-content-right-side-on-right {
+   gap: 4rem;
+   /* ========================= */
+   flex-basis: 30rem;
+   display: flex;
+   /* justify-content: flex-end; */
+   /* align-items: center; */
+   /* background-color: greenyellow; */
+}
+.icon-container-right {
+   width: 2.7rem;
+   height: 60%;
+}
+
+.create-post-container-right {
+   background-image: var(--button-color);
+   flex-basis: 11rem;
+   height: 3.5rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 1rem;
+   border-radius: 5px;
+   color: white;
+}
+
+.create-post-container-right p {
+   font-size: 1.1rem;
+   font-weight: bold;
+}
+
+.create-post-container-right-text {
+   font-size: 1.2rem;
+   font-weight: bold;
+}
+
+.create-post-container-right-plus-icon {
+   font-weight: bold;
+   background: rgba(0, 0, 0, 0.25);
+   border-radius: 5px;
+   width: 2.3rem;
+   height: 2.3rem;
+   display: flex;
+}
+
+.create-post-container-right-plus-icon p {
+   margin: auto;
+   font-size: 1.6rem;
+}
+
+.dropdown-item {
+   display: flex;
+   background-color: #0b0b0b;
+   flex-direction: column;
+}
+
+.dropdown-item-photo-name {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+/* .btn-dropdown {
+   box-shadow: '0 !important','&:hover': {
+      border: '0 !important';
+   }
+}
+
+.btn-dropdown:focus {
+   box-shadow: '0 !important','&:hover': {
+      border: '0 !important';
+   }
+} */

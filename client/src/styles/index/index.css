@@ -1,0 +1,227 @@
+.container-index {
+   display: flex;
+   height: 16rem;
+   background-color: var(--primary-color);
+   padding: 1rem;
+   height: 100vh;
+   /* background-color: #0b0b0b; */
+   /* background-color: tomato; */
+
+   align-items: center;
+   /* gap: 5rem; */
+   justify-content: center;
+}
+
+.logo-container {
+   padding-top: 5rem;
+   width: 50rem;
+   /* height: 21rem; */
+   /* padding: 2rem; */
+   /* background-color: yellow; */
+   padding-top: 1rem;
+}
+
+.logo-container img {
+   width: 100%;
+   height: 100%;
+}
+
+.text-container {
+   margin-top: 8rem;
+}
+
+.text-container h1 {
+   font-size: 6rem;
+   color: white;
+}
+
+.container-left {
+   /* background-color: green; */
+   flex: 1;
+   height: 85vh;
+}
+
+.container-right {
+   /* background-color: green; */
+   padding: 1rem;
+   flex: 1;
+}
+
+.container-left-contents {
+   /* padding-top: 5rem; */
+   /* background-color: blue; */
+}
+
+.text-container-2 {
+   margin: 1.7rem 0;
+}
+
+.text-container-2 p {
+   line-height: 1.8;
+   color: white;
+   font-size: 1.8rem;
+}
+
+.login-register-container {
+   display: flex;
+   gap: 2rem;
+}
+
+.login-button {
+   width: 13rem;
+   height: 3.5rem;
+   background-image: linear-gradient(
+      90deg,
+      #4dd4f7 0%,
+      #9090fb 36.46%,
+      #ff6b81 71.35%,
+      #fbdf63 100%
+   );
+   display: flex;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.login-button p {
+   margin: auto;
+   color: white;
+   font-size: 1.5rem;
+}
+
+.register-button {
+   width: 13rem;
+   height: 3.5rem;
+   display: flex;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.register-button p {
+   margin: auto;
+   color: white;
+   font-size: 1.5rem;
+}
+
+.images-container {
+   display: flex;
+   gap: 1rem;
+   padding: 0.1rem;
+   width: 70rem;
+   height: 78rem;
+}
+
+.images-container-first-slice {
+   /* height: 100%; */
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+.images-container-first-slice-first-image {
+   flex-basis: 22rem;
+}
+.images-container-first-slice-second-image {
+   flex: 1;
+}
+.images-container-first-slice-third-image {
+   flex: 1;
+   /* border:1px solid; */
+}
+.images-container-first-slice-third-image img {
+   /* width: ; */
+}
+
+.images-container-second-slice {
+   /* height: 100%; */
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+.images-container-second-slice-first-image {
+   flex-basis: 33rem;
+}
+.images-container-second-slice-second-image {
+   flex: 1;
+}
+
+.images-container-third-slice {
+   /* height: 100%; */
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+.images-container-third-slice-first-image {
+   flex: 1;
+}
+
+.images-container-third-slice-second-image {
+   flex-basis: 22rem;
+}
+.images-container-third-slice-third-image {
+   flex: 1;
+   /* flex-basis: 12rem; */
+}
+.images-container-third-slice-third-image img {
+   /* width: 100%;
+   height: 100%; */
+}
+
+/* ================FormLogin================== */
+
+.form-login {
+   background-color: green;
+}
+
+.modal-background {
+   background-color: var(--modal-color);
+}
+
+.login {
+   padding: 4rem 2.5rem;
+   /* border-radius: 5px; */
+}
+
+.login h1 {
+   font-size: 3rem;
+   color: white;
+   margin-bottom: 4rem;
+}
+
+.login input {
+   width: 100%;
+   height: 4rem;
+   font-size: 2rem;
+   border-radius: 5px;
+   background-color: var(--input-color);
+   margin-bottom: 3rem;
+   padding: 1rem;
+}
+
+.login input:focus {
+   border-color: #d2d2d2 !important;
+   outline: 0;
+}
+
+.submit-login {
+   margin-top: 1.5rem;
+   background-image: var(--button-color);
+   height: 4rem;
+   font-weight: bold;
+   border-radius: 5px;
+   font-size: 1.8rem;
+   color: white;
+   display: flex;
+}
+
+.submit-login p {
+   margin: auto;
+}
+
+.modal-90w {
+   width: 40%;
+}

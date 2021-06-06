@@ -1,0 +1,39 @@
+.upload-photos-button {
+   background-image: var(--button-color);
+   width: 11.5rem;
+   height: 4rem;
+   border-radius: 5px;
+   display: flex;
+   margin-top: 6rem;
+}
+
+.edit-profile {
+   margin: auto;
+   color: white;
+   font-size: 1.5rem;
+}
+
+.pages-container-padding {
+   flex: 1;
+}
+.form-edit-profile-container {
+   width: 100%;
+   flex: 1;
+}
+
+.input-button-edit-profile {
+   display: flex;
+}
+
+.input-button-edit-profile .null {
+   flex: 1;
+}
+
+.input-name-container {
+   margin-top: 3rem;
+}
+
+.input-name-container input,
+textarea {
+   font-size: 1.6rem;
+}
