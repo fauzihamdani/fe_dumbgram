@@ -32,7 +32,8 @@ function Sidebar() {
 
    return (
       <div className="public-sidebar-container">
-         {location.pathname === '/edit-profile' ? (
+         {location.pathname === '/edit-profile' ||
+         location.pathname === '/user-profile' ? (
             <div></div>
          ) : (
             <div className="edit-icon-container-outter">
@@ -49,32 +50,22 @@ function Sidebar() {
                </Link>
             </div>
          )}
-
-         <div className="public-sidebar-pp-name-container">
-            <div className="public-sidebar-pp-container bg-image-pp-colorfull ">
-               <img className="image-size-100" src={PP} alt="" srcset="" />
-            </div>
-            <div className="public-sidebar-name-container">
-               <div className="public-sidebar-name-account">
-                  <h1>Lisa</h1>
+         <Link to={'/user-profile'}>
+            <div className="public-sidebar-pp-name-container">
+               <div className="public-sidebar-pp-container bg-image-pp-colorfull ">
+                  <img className="image-size-100" src={PP} alt="" srcset="" />
                </div>
-               <div className="public-sidebar-username-account">
-                  <p>@lalalisa_m</p>
-                  {/* <div>
-                     {location.pathname === '/edit-profile' ? (
-                        <div style={{ color: 'white', fontSize: '3rem' }}>
-                           true
-                        </div>
-                     ) : (
-                        <div style={{ color: 'white', fontSize: '3rem' }}>
-                           false
-                        </div>
-                     )}
-                  </div> */}
+               <div className="public-sidebar-name-container">
+                  <div className="public-sidebar-name-account">
+                     <h1>Lisa</h1>
+                  </div>
+                  <div className="public-sidebar-username-account">
+                     <p>@lalalisa_m</p>
+                  </div>
                </div>
             </div>
-         </div>
-         {location.pathname === '/edit-profile' ? (
+         </Link>
+         {location.pathname === '/user-profile' ? (
             <div className="message-unfollow-container">
                <div className="sidebar-message-button clicked button-a">
                   {' '}
@@ -88,7 +79,7 @@ function Sidebar() {
             <div></div>
          )}
 
-         <div className="public-sidebar-info-user">
+         <div className="public-sidebar-info-user clicked">
             <div className="public-sidebar-post-count-container public-sidebar-flex-col">
                <div className="public-sidebar-post public-sidebar-text-info">
                   Post
@@ -132,18 +123,20 @@ function Sidebar() {
                   </div>
                </div>
             </Link>
-            <div className="explore-container">
-               <div className="explore-icon-container">
-                  <img
-                     className="image-size-100 button-a clicked"
-                     src={Explore}
-                     alt=""
-                  />
+            <Link to={'/explore'}>
+               <div className="explore-container">
+                  <div className="explore-icon-container">
+                     <img
+                        className="image-size-100 button-a clicked"
+                        src={Explore}
+                        alt=""
+                     />
+                  </div>
+                  <div className="explore-text-container button-a clicked">
+                     Explore
+                  </div>
                </div>
-               <div className="explore-text-container button-a clicked">
-                  Explore
-               </div>
-            </div>
+            </Link>
          </div>
 
          <div className="logout-container" onClick={submitLogout}>

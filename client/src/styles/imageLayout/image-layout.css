@@ -1,9 +1,156 @@
 .image-layout-container {
-   /* position: relative; */
-   column-count: 3;
+   columns: 3;
+   /* column-gap: 2rem; */
 }
 
 .image-layout-model {
+   display: inline-block;
+   margin-bottom: 2rem;
+   position: relative;
+   width: 43rem;
+}
+
+.image-info-user {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+.image-info-user-container {
+   display: flex;
+}
+
+.image-info {
+   padding: 0 1rem;
+   /* background-color: green; */
+   height: 7rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.image-info-user-count {
+   padding-top: 1.5rem;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   justify-content: flex-end;
+   gap: 0.5rem;
+}
+
+.icons-container {
+   display: flex;
+   gap: 1.5rem;
+}
+
+.style-1 {
+}
+
+.style-2 {
+   height: 40rem;
+}
+
+.style-3 {
+   height: 30rem;
+}
+
+.style-4 {
+   height: 50rem;
+}
+
+.style-5 {
+   height: 64rem;
+}
+
+.style-6 {
+}
+
+.modal-90w {
+   width: 180rem;
+   /* height: 20rem; */
+   margin: auto;
+   /* border-radius: 10rem; */
+   /* background-color: red; */
+}
+
+.modal-feed-container {
+   color: black;
+   font-size: 5rem;
+   height: 90rem;
+   width: 120rem;
+   background-color: #1f1f1f;
+   display: flex;
+}
+
+.modal-feed-image-container {
+   flex: 1rem;
+   background-color: red;
+}
+.modal-feed-comments-container {
+   flex-basis: 20rem;
+   /* background-color: chocolate; */
+   padding: 2rem;
+}
+
+.modal-feed-close-button-container {
+   display: flex;
+   margin-bottom: 1rem;
+   color: white;
+}
+.modal-feed-close-null {
+   flex: 1;
+}
+.modal-feed-close-button {
+   font-size: 1.6rem;
+}
+
+.comment-form--comment-container {
+   display: flex;
+   flex-direction: column;
+}
+
+.caption-container {
+   flex-basis: 8rem;
+   font-size: 1.5rem;
+   padding-bottom: 1rem;
+   min-height: 2rem;
+   border-bottom: 1px solid rgba(171, 171, 171, 0.3);
+   align-items: center;
+   gap: 1rem;
+}
+
+.comment-scroll-container {
+   /* display: inline; */
+   /* flex: 1; */
+   font-size: 1.5rem;
+   height: 64rem;
+   width: 30rem;
+   overflow-y: auto;
+}
+.comment-input-container {
+   flex-basis: 7rem;
+   font-size: 1.5rem;
+   padding: 2rem 0;
+   height: 5rem;
+}
+
+.modal-image-name-container {
+}
+
+.text-modal-color {
+   color: #ababab;
+}
+
+.text-modal-color-white {
+   color: white;
+}
+
+/* .image-layout-container {
+   position: relative;
+   column-count: 3;
+} */
+
+/* .image-layout-model {
    display: inline-block;
    margin-bottom: 4rem;
    overflow: hidden;
@@ -39,4 +186,4 @@ img {
 
 .style-6 {
    height: 35rem;
-}
+} */

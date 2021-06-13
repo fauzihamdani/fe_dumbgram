@@ -39,16 +39,13 @@ function Navbar() {
                   </div>
                </div>
                <div className="navbar-content-right-side-on-right">
-                  <Dropdown
-                     className=" outline btn-dropdown"
-                     style={{ backgroundColor: '#0b0b0b' }}
-                  >
+                  <Dropdown style={{ backgroundColor: '#0b0b0b' }}>
                      <Dropdown.Toggle
-                        className="outline btn-dropdown"
+                        className="outline btn-dropdown remove-focus"
                         style={{
                            backgroundColor: '#0b0b0b',
                            border: 'none',
-                           outline: 'none',
+                           outline: 'none !important',
                         }}
                         id="dropdown-basic"
                      >
@@ -179,12 +176,14 @@ function Navbar() {
                   </Dropdown>
 
                   <div className="icon-container-right clicked button-a">
-                     <img
-                        className="image-size-100"
-                        src={MessageIcon}
-                        alt=""
-                        srcset=""
-                     />
+                     <Link to={'/message'}>
+                        <img
+                           className="image-size-100"
+                           src={MessageIcon}
+                           alt=""
+                           srcset=""
+                        />
+                     </Link>
                   </div>
                   <Link to={'/create-post'}>
                      <div className="create-post-container-right clicked button-a">

@@ -36,6 +36,14 @@
    height: 100%;
 }
 
+li {
+   list-style: none;
+}
+a:link,
+a:visited {
+   text-decoration: none;
+}
+
 .bg {
    background-color: #0b0b0b;
 }
@@ -136,4 +144,12 @@
 
 .rounded {
    border-radius: 50px;
+}
+
+.remove-focus {
+}
+
+.remove-focus:focus {
+   outline: none !important;
+   border: none !important;
 }

@@ -1,0 +1,12 @@
+npx sequelize model:generate --name Post --attributes caption:string,filename:string,like:integer,userId:integer
+ npx sequelize model:generate --name User --attributes email:string,name:string,username:string,password:string,image:string,bio:string,usernotif:boolean
+
+ need tobe done:
+ database: comment
+ database: notif, messagenotif\
+
+
+ following,
+ userto parameter when add messeages, done
+ validation,
+ updateUser

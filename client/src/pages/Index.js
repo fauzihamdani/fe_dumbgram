@@ -178,6 +178,8 @@ function Index() {
             show={show}
             onHide={handleClose}
             style={{ borderRadius: '5px' }}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
          >
             <>
                <FormLogin
@@ -193,6 +195,8 @@ function Index() {
             show={show2}
             onHide={handleClose2}
             style={{ borderRadius: '5px' }}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
          >
             <>
                <FormRegister

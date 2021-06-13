@@ -8,15 +8,16 @@ import {
    Redirect,
 } from 'react-router-dom';
 //
+import AuthContext from './contexts/auth/authContext';
+import AuthState from './contexts/auth/authState';
 import Index from './pages/Index';
 import Message from './pages/Message';
-// import MessageChoosen from './pages/MessageChoosen';
 import EditProfile from './pages/EditProfile';
 import Feed from './pages/Feed';
 import CreatePost from './pages/CreatePost';
 import MessageChoosen from './pages/MessageChoosen';
-import AuthContext from './contexts/auth/authContext';
-import AuthState from './contexts/auth/authState';
+import ProfileUser from './pages/ProfileUser';
+import Explore from './pages/Explore';
 
 function App() {
    // ======================Auth Context======================================================================
@@ -28,6 +29,7 @@ function App() {
          <Router>
             <Switch>
                <Route path="/" component={Index} exact />
+
                {isLogin ? (
                   <Switch>
                      <Route path="/create-post" component={CreatePost} exact />
@@ -43,6 +45,12 @@ function App() {
                         exact
                      />
                      <Route path="/feed" component={Feed} exact />
+                     <Route path="/explore" component={Explore} exact />
+                     <Route
+                        path="/user-profile"
+                        component={ProfileUser}
+                        exact
+                     />
                   </Switch>
                ) : (
                   <Redirect to="/" />

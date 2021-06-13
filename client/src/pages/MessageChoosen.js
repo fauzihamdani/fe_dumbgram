@@ -44,7 +44,67 @@ function MessageChoosen() {
                         </div>
                      </div>
                   </div>
-                  <div className="chat-list-wrap-right">
+                  <div className="chat-list-wrap">
+                     <div className="chat-list-wrap-inner">
+                        <div className="chat-item-container">
+                           <div className="bg-image-colorfull">
+                              <img
+                                 className="image-size-100"
+                                 src={PpChat}
+                                 alt=""
+                                 srcset=""
+                              />
+                           </div>
+                           <div className="chat-content">Hello Lisa</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="chat-list-wrap">
+                     <div className="chat-list-wrap-inner">
+                        <div className="chat-item-container">
+                           <div className="bg-image-colorfull">
+                              <img
+                                 className="image-size-100"
+                                 src={PpChat}
+                                 alt=""
+                                 srcset=""
+                              />
+                           </div>
+                           <div className="chat-content">Hello Lisa</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="chat-list-wrap">
+                     <div className="chat-list-wrap-inner">
+                        <div className="chat-item-container">
+                           <div className="bg-image-colorfull">
+                              <img
+                                 className="image-size-100"
+                                 src={PpChat}
+                                 alt=""
+                                 srcset=""
+                              />
+                           </div>
+                           <div className="chat-content">Hello Lisa</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="chat-list-wrap">
+                     <div className="chat-list-wrap-inner">
+                        <div className="chat-item-container">
+                           <div className="bg-image-colorfull">
+                              <img
+                                 className="image-size-100"
+                                 src={PpChat}
+                                 alt=""
+                                 srcset=""
+                              />
+                           </div>
+                           <div className="chat-content">Hello Lisa</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="chat-list-wrap">
                      <div className="chat-list-wrap-inner">
                         <div className="chat-item-container">
                            <div className="bg-image-colorfull">
@@ -195,6 +255,36 @@ function MessageChoosen() {
                      </div>
                   </div>
                   <div className="chat-list-wrap-right">
+                     <div className="chat-list-wrap-inner">
+                        <div className="chat-item-container">
+                           <div className="bg-image-colorfull">
+                              <img
+                                 className="image-size-100"
+                                 src={PpChat}
+                                 alt=""
+                                 srcset=""
+                              />
+                           </div>
+                           <div className="chat-content">Hello Lisa</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="chat-list-wrap-right">
+                     <div className="chat-list-wrap-inner">
+                        <div className="chat-item-container">
+                           <div className="bg-image-colorfull">
+                              <img
+                                 className="image-size-100"
+                                 src={PpChat}
+                                 alt=""
+                                 srcset=""
+                              />
+                           </div>
+                           <div className="chat-content">Hello Lisa</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="chat-list-wrap">
                      <div className="chat-list-wrap-inner">
                         <div className="chat-item-container">
                            <div className="bg-image-colorfull">
