@@ -17,7 +17,7 @@ const {
 const {
    getPosts,
    addPost,
-   addLike,
+   // addLike,
    getPostsByFollowed,
 } = require('../controllers/post');
 
@@ -29,19 +29,20 @@ const {
 
 const { addComment, getComment } = require('../controllers/comment');
 const { insertChat, getChat } = require('../controllers/chat');
+const { addLike } = require('../controllers/like');
 
 // user api
 router.get('/users', getUser);
 router.get('/user-by-id/:id', authenticated, getUserById);
 router.post('/user-login', login);
-router.post('/user', registerUser);
+router.post('/register', registerUser);
 router.delete('/user/:id', authenticated, deleteUser);
 router.patch('/user/:iduser', authenticated, updateUser);
 
 // feed api
 router.get('/feed', getPosts);
 router.post('/feed', authenticated, addPost);
-router.post('/like', authenticated, addLike);
+// router.post('/like', authenticated, addLike);
 router.get('/feed-by-followed', authenticated, getPostsByFollowed);
 
 // follower api
@@ -56,5 +57,8 @@ router.get('/comments/:idfeed', authenticated, getComment);
 // chat api
 router.post('/message/:iduserto', authenticated, insertChat);
 router.get('/message/:usertoid', authenticated, getChat);
+
+//like api
+router.post('/like', authenticated, addLike);
 
 module.exports = router;

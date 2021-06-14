@@ -112,7 +112,7 @@ exports.login = async (req, res) => {
 
       const schema = Joi.object({
          email: Joi.string().email().min(5).max(50).required(),
-         password: Joi.string().min(8).required(),
+         password: Joi.string().min(4).required(),
       });
 
       const { error } = schema.validate(req.body);

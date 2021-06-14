@@ -2,6 +2,7 @@ const { Follower, User } = require('../../models/');
 
 exports.addFollower = async (req, res) => {
    try {
+      console.log('user id', req.user.id);
       const { body } = req;
       console.log('response body', body);
       const idUser = req.user.id;
