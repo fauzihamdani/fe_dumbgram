@@ -1,6 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 
+import AuthContext from '../contexts/auth/authContext';
 import Dumgram from '../assets/svg/DumbGram.svg';
 import DG from '../assets/svg/DG.svg';
 import '../styles/index/index.css';
@@ -14,8 +16,28 @@ import Gambar7 from '../assets/img/gambar7.png';
 import Gambar8 from '../assets/img/gambar8.png';
 import FormLogin from '../components/index/FormLogin';
 import FormRegister from '../components/index/FormRegister';
+import { setAuthToken } from '../config/api';
 
 function Index() {
+   const history = useHistory();
+   const authContext = useContext(AuthContext);
+   const { isLogin, loadUser } = authContext;
+
+   // useEffect(() => {
+   //    loadUser();
+   // }, []);
+
+   useEffect(() => {
+      if (isLogin == false) {
+         history.push('/');
+      } else {
+         history.push('/feed');
+      }
+   }, [isLogin]);
+   if (localStorage.token) {
+      setAuthToken(localStorage.token);
+   }
+
    // ============== Modal Login Controller====================
    const [show, setShow] = useState(false);
 

@@ -1,30 +1,33 @@
 import AuthContext from '../../contexts/auth/authContext';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 
 function FormRegister({ handleClose, moveToLogin }) {
    const history = useHistory();
    const authContext = useContext(AuthContext);
-   const { isLogin, login } = authContext;
+   const { isLogin, register } = authContext;
 
    //=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*= onchange Register input controller=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-   const [formLogin, setFormLogin] = useState({
+   const [FormRegister, setFormRegister] = useState({
       email: '',
       password: '',
+      name: '',
+      username: '',
    });
-   const { email, password } = formLogin;
+   const { email, password, name, username } = FormRegister;
 
-   const onChangeLogin = (e) => {
-      const updateForm = { ...formLogin };
+   const onChangeRegister = (e) => {
+      const updateForm = { ...FormRegister };
       updateForm[e.target.name] = e.target.value;
-      setFormLogin(updateForm);
+      setFormRegister(updateForm);
    };
    // =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-   const submitRegister = () => {
-      login();
-      if (isLogin) {
-         history.push('/feed');
-      }
+   const submitRegister = (e) => {
+      e.preventDefault();
+
+      const body = JSON.stringify({ email, password, name, username });
+      register(body);
+      history.push('/feed');
    };
 
    return (
@@ -35,29 +38,33 @@ function FormRegister({ handleClose, moveToLogin }) {
                type="text"
                name="email"
                id=""
-               //    value=""
+               value={email}
                placeholder="Email"
+               onChange={(e) => onChangeRegister(e)}
             />
             <input
                type="text"
                name="name"
                id=""
-               //    value=""
+               value={name}
                placeholder="Name"
+               onChange={(e) => onChangeRegister(e)}
             />
             <input
                type="text"
                name="username"
                id=""
-               //    value=""
+               value={username}
                placeholder="Username"
+               onChange={(e) => onChangeRegister(e)}
             />
             <input
                type="password"
                name="password"
                id=""
-               //    value=""
+               value={password}
                placeholder="Password"
+               onChange={(e) => onChangeRegister(e)}
             />
             <div
                className="submit-login button-a clicked"

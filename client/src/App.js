@@ -1,16 +1,20 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useReducer, useState, useContext } from 'react';
 import {
    BrowserRouter as Router,
    Switch,
    Route,
    Redirect,
 } from 'react-router-dom';
-//
-import AuthContext from './contexts/auth/authContext';
+
+import PrivateRoute from './components/routes/PrivateRoute';
 import AuthState from './contexts/auth/authState';
+import PostState from './contexts/post/postState';
+import FollowerState from './contexts/follower/followerState';
+import ImageModalState from './contexts/imageModal/imageModalState';
+
 import Index from './pages/Index';
+import { setAuthToken } from './config/api';
 import Message from './pages/Message';
 import EditProfile from './pages/EditProfile';
 import Feed from './pages/Feed';
@@ -18,45 +22,60 @@ import CreatePost from './pages/CreatePost';
 import MessageChoosen from './pages/MessageChoosen';
 import ProfileUser from './pages/ProfileUser';
 import Explore from './pages/Explore';
+import { useHistory } from 'react-router';
+
+if (localStorage.token) {
+   setAuthToken(localStorage.token);
+}
 
 function App() {
-   // ======================Auth Context======================================================================
-   const authContext = useContext(AuthContext);
-   const { isLogin } = authContext;
-   // ========================================================================================================
    return (
       <div className="App">
-         <Router>
-            <Switch>
-               <Route path="/" component={Index} exact />
+         <AuthState>
+            <PostState>
+               <FollowerState>
+                  <ImageModalState>
+                     <Router>
+                        <Switch>
+                           <Route path="/" component={Index} exact />
 
-               {isLogin ? (
-                  <Switch>
-                     <Route path="/create-post" component={CreatePost} exact />
-                     <Route path="/message" component={Message} exact />
-                     <Route
-                        path="/selected-message"
-                        component={MessageChoosen}
-                        exact
-                     />
-                     <Route
-                        path="/edit-profile"
-                        component={EditProfile}
-                        exact
-                     />
-                     <Route path="/feed" component={Feed} exact />
-                     <Route path="/explore" component={Explore} exact />
-                     <Route
-                        path="/user-profile"
-                        component={ProfileUser}
-                        exact
-                     />
-                  </Switch>
-               ) : (
-                  <Redirect to="/" />
-               )}
-            </Switch>
-         </Router>
+                           <PrivateRoute
+                              path="/create-post"
+                              component={CreatePost}
+                              exact
+                           />
+                           <PrivateRoute
+                              path="/message"
+                              component={Message}
+                              exact
+                           />
+                           <PrivateRoute
+                              path="/selected-message"
+                              component={MessageChoosen}
+                              exact
+                           />
+                           <PrivateRoute
+                              path="/edit-profile"
+                              component={EditProfile}
+                              exact
+                           />
+                           <PrivateRoute path="/feed" component={Feed} exact />
+                           <PrivateRoute
+                              path="/explore"
+                              component={Explore}
+                              exact
+                           />
+                           <PrivateRoute
+                              path="/user-profile/:id"
+                              component={ProfileUser}
+                              exact
+                           />
+                        </Switch>
+                     </Router>
+                  </ImageModalState>
+               </FollowerState>
+            </PostState>
+         </AuthState>
       </div>
    );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link, useParams } from 'react-router-dom';
 import '../../styles/sidebar/sidebar.css';
 import EditIcon from '../../assets/svg/edit.svg';
 import PP from '../../assets/img/ppchat.png';
@@ -9,87 +9,127 @@ import Logout from '../../assets/svg/logout.svg';
 import AuthContext from '../../contexts/auth/authContext';
 import FollowerContext from '../../contexts/follower/followerContext';
 import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
-function Sidebar() {
+function SidebarProfile() {
+   const params = useParams();
+   const { id } = params;
    const history = useHistory();
    const location = useLocation();
-   const [showed, setShowed] = useState(true);
 
    // get follower info context====================
    const followerContext = useContext(FollowerContext);
-   const { getFollowers, followers, getFollowing, following } = followerContext;
+   const {
+      getFollowers,
+      followers,
+      getFollowing,
+      following,
+      loadingFollower,
+      loadingFollowing,
+      addFollower,
+      followerLength,
+      followingLength,
+   } = followerContext;
+   // *
+   // *
 
    // get user info context====================
    const authContext = useContext(AuthContext);
-   const { logout, isLogin, userData, loadUser, loading } = authContext;
+   const {
+      logout,
+      isLogin,
+      userData,
+      loadUser,
+      loading,
+      userInfo,
+      getUserInfo,
+   } = authContext;
+   // *
+   // *
 
-   // logout functionality
+   // logout functionality====================================
    const submitLogout = () => {
       logout();
       if (!isLogin) {
          history.push('/');
       }
    };
-   console.log('=========================================', userData);
+   // *
+   // *
+
+   // isFollowed???========================================
+   var isFollowed =
+      followers &&
+      followers.find((userFollower) => userFollower?.userId === userData?.id);
+   const [followedUser, setFollowedUser] = useState(isFollowed);
+   // *
+   // *
+
+   // Get User Data Followers=================================
+   useEffect(() => {
+      getUserInfo(id);
+   }, []);
+
+   useEffect(() => {
+      getFollowers(id);
+
+      isFollowed ? setFollowedUser(true) : setFollowedUser(false);
+   }, []);
+
+   useEffect(() => {
+      getFollowing(id);
+   }, []);
+   // *
+   // *
+
+   // load userLogin=======================================
    useEffect(() => {
       loadUser();
    }, []);
 
-   useEffect(() => {
-      getFollowers(userData.id);
-   }, []);
+   // *
+   // *
 
-   useEffect(() => {
-      getFollowing(userData.id);
-   }, []);
-   return (
+   // Click Follow==========================================
+   const addFollow = () => {
+      const addFollowData = { userFollowId: userInfo?.id };
+      // setFollowedUser(!isFollowed);
+      // isFollowed ? console.log('followed') : console.log('follow!');
+      // getFollowers(id);
+      // getFollowing(id);
+      // const addFollowData = { userFollowId: userInfo?.id };
+      addFollower(addFollowData, id);
+      // setFollowedUser(!isFollowed);
+   };
+
+   return !loadingFollower ? (
       <div className="public-sidebar-container">
-         {location.pathname === '/edit-profile' ||
-         location.pathname === '/user-profile' ? (
-            <div></div>
-         ) : (
-            <div className="edit-icon-container-outter">
-               <div className="asd"></div>
-               <Link to={'/edit-profile'}>
-                  <div className="edit-icon-container clicked button-a">
-                     <img
-                        className="image-size-100"
-                        src={EditIcon}
-                        alt=""
-                        srcset=""
-                     />
-                  </div>
-               </Link>
-            </div>
-         )}
-         <Link to={'/user-profile/2'}>
+         {}
+         <Link to={'/user-profile'}>
             <div className="public-sidebar-pp-name-container">
                <div className="public-sidebar-pp-container bg-image-pp-colorfull ">
                   <img className="image-size-100" src={PP} alt="" srcset="" />
                </div>
                <div className="public-sidebar-name-container">
                   <div className="public-sidebar-name-account">
-                     <h1>{userData.name}</h1>
+                     <h1>{userInfo?.name}</h1>
                   </div>
                   <div className="public-sidebar-username-account">
-                     <p>@{userData.username}</p>
+                     <p>@{userInfo?.username}</p>
                   </div>
                </div>
             </div>
          </Link>
-         {location.pathname === '/user-profile' ? (
-            <div className="message-unfollow-container">
-               <div className="sidebar-message-button clicked button-a">
-                  {' '}
-                  <p>Message</p>
-               </div>
-               <div className="sidebar-follow-button clicked button-a">
-                  <p>Follow</p>
-               </div>
+         <div className="message-unfollow-container">
+            <div className="sidebar-message-button clicked button-a">
+               {' '}
+               <p>Message</p>
             </div>
-         ) : (
-            <div></div>
-         )}
+            <div
+               className="sidebar-follow-button clicked button-a"
+               onClick={addFollow}
+            >
+               {isFollowed ? <p>Unfollow</p> : <p>Follow</p>}
+            </div>
+         </div>
 
          <div className="public-sidebar-info-user clicked">
             <div className="public-sidebar-post-count-container public-sidebar-flex-col">
@@ -105,7 +145,7 @@ function Sidebar() {
                   Followers
                </div>
                <div className="public-sidebar-followers-number public-sidebar-number-info">
-                  {followers?.length}
+                  {loadingFollower ? <div>loading...</div> : followerLength}
                </div>
             </div>
             <div className="public-sidebar-following-count-container public-sidebar-flex-col">
@@ -113,14 +153,12 @@ function Sidebar() {
                   Following
                </div>
                <div className="public-sidebar-following-number public-sidebar-number-info">
-                  {following?.length}
+                  {loadingFollowing ? <div>loading...</div> : followingLength}
                </div>
             </div>
          </div>
 
-         <div className="bio-container">
-            <p>{userData.bio}</p>
-         </div>
+         <div className="bio-container">{/* <p>{userInfo.bio}</p> */}</div>
 
          <div className="feed-explore-container">
             <Link to={'/feed'}>
@@ -163,10 +201,10 @@ function Sidebar() {
                Logout
             </div>
          </div>
-         {/* <div>{JSON.stringify(userData)}</div>
-         <div>{JSON.stringify(following)}</div> */}
       </div>
+   ) : (
+      <h1>Loading</h1>
    );
 }
 
-export default Sidebar;
+export default SidebarProfile;

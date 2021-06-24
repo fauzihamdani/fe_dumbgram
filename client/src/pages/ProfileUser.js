@@ -1,5 +1,5 @@
 import Navbar from '../components/reusable/Navbar';
-import Sidebar from '../components/sidebar/Sidebar';
+import SidebarUserProfile from '../components/sidebar/SidebaruserProfile';
 import PageTitle from '../components/pageTitle/PageTitle';
 
 function ProfileUser() {
@@ -7,7 +7,7 @@ function ProfileUser() {
       <div>
          <Navbar />
          <div className="container__2 display-flex">
-            <Sidebar />
+            <SidebarUserProfile />
             <div className="pages-container-padding ">
                <PageTitle title="Zayn's, Feed" />
             </div>

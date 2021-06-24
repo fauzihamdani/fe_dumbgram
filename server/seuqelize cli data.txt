@@ -5,8 +5,14 @@ npx sequelize model:generate --name Post --attributes caption:string,filename:st
  database: comment
  database: notif, messagenotif\
 
-
- following,
+BE
+ following, done
  userto parameter when add messeages, done
- validation,
- updateUser
+ validation,done
+ updateUser, done
+
+INTEGRATION
+ modal image
+ profile user = done
+ followed / notFollowed
+ 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { authenticated } = require('../middlewares/auth');
-const { checkRolePartner, checkRoleUser } = require('../middlewares/checkRole');
+const { uploadFile } = require('../middlewares/upload');
 
 const {
    getUser,
@@ -34,14 +34,15 @@ const { addLike } = require('../controllers/like');
 // user api
 router.get('/users', getUser);
 router.get('/user-by-id/:id', authenticated, getUserById);
-router.post('/user-login', login);
+router.post('/login', login);
 router.post('/register', registerUser);
 router.delete('/user/:id', authenticated, deleteUser);
 router.patch('/user/:iduser', authenticated, updateUser);
+router.get('/check-auth', authenticated, checkAuth);
 
 // feed api
 router.get('/feed', getPosts);
-router.post('/feed', authenticated, addPost);
+router.post('/feed', authenticated, uploadFile('fileUpload'), addPost);
 // router.post('/like', authenticated, addLike);
 router.get('/feed-by-followed', authenticated, getPostsByFollowed);
 

@@ -21,11 +21,11 @@ function FormLogin({ handleClose, moveToRegister }) {
    };
    // =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*==*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 
-   const submitLogin = () => {
-      login();
-      if (isLogin) {
-         history.push('/feed');
-      }
+   const submitLogin = (e) => {
+      e.preventDefault();
+
+      const body = JSON.stringify({ email, password });
+      login(body);
    };
 
    return (

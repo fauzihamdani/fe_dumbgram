@@ -26,19 +26,17 @@ exports.getUser = async (req, res) => {
 exports.registerUser = async (req, res) => {
    try {
       const { body } = req;
-      const { email, password, bio, image } = body;
+      const { email, name, username, password, bio, image } = body;
 
-      console.log('serveruser', req.body);
+      // console.log('serveruser', req.body);
 
       const schema = Joi.object({
          email: Joi.string().email().min(3).max(50).required(),
          name: Joi.string().min(3).max(100).required(),
          password: Joi.string().min(3).max(100).required(),
          username: Joi.string().min(3).max(100).required(),
-         bio: Joi.string().min(3).max(100).required(),
-         image: Joi.string().min(3).max(100),
       });
-
+      console.log('tes here');
       const { error } = schema.validate(req.body);
 
       if (error)
@@ -52,7 +50,7 @@ exports.registerUser = async (req, res) => {
             email: req.body.email,
          },
       });
-
+      console.log(req.body);
       if (checkEmail)
          return res.status(400).send({
             status: 'Register failed',
@@ -62,18 +60,15 @@ exports.registerUser = async (req, res) => {
       const hashStrength = 10;
       const hashedPassword = await bcrypt.hash(req.body.password, hashStrength);
 
-      console.log(req.file);
-
       const user = await User.create({
          email: req.body.email,
          name: req.body.name,
          username: req.body.username,
          password: hashedPassword,
-         image: req.body.image,
          bio: req.body.bio,
          usernotif: null,
       });
-
+      console.log('tes here');
       const secretKey = 'asdf1234';
       const token = jwt.sign(
          {
@@ -81,9 +76,7 @@ exports.registerUser = async (req, res) => {
          },
          secretKey
       );
-
-      const url = 'http://localhost:5000/uploads/';
-
+      console.log(token);
       res.send({
          status: 'success',
          message: 'User Succesfully Registered',
@@ -157,6 +150,7 @@ exports.login = async (req, res) => {
          message: 'Login Success',
          data: {
             user: {
+               id: checkEmail.id,
                name: checkEmail.name,
                email: checkEmail.email,
                token,
@@ -199,74 +193,35 @@ exports.deleteUser = async (req, res) => {
    }
 };
 
-// exports.login = async (req, res) => {
-//     try {
-//         const { email, password } = req.body;
+exports.checkAuth = async (req, res) => {
+   console.log('hitting checkAuth');
 
-//         const schema = Joi.object({
-//             email: Joi.string().email().min(10).max(50).required(),
-//             password: Joi.string().min(8).required(),
-//         });
+   try {
+      const user = await User.findOne({
+         where: {
+            id: req.user.id,
+         },
+      });
 
-//         const { error } = schema.validate(req.body);
-
-//         if (error)
-//             return res.status(400).send({
-//                 status: "validation failed",
-//                 message: error.details[0].message,
-//             });
-
-//         const checkEmail = await User.findOne({
-//             where: {
-//                 email,
-//             },
-//         });
-
-//         if (!checkEmail)
-//             return res.status(400).send({
-//                 status: "Login Failed",
-//                 message: "Your Credentials is not Valid",
-//             });
-
-//         const isValidPass = await bcrypt.compare(password, checkEmail.password);
-
-//         if (!isValidPass) {
-//             return res.status(400).send({
-//                 status: "Login Failed",
-//                 message: "Your Credentials is not Valid",
-//             });
-//         }
-
-//         const secretKey = "asdf1234";
-//         const token = jwt.sign(
-//             {
-//                 id: checkEmail.id,
-//             },
-//             secretKey
-//         );
-
-//         res.send({
-//             status: "success",
-//             message: "Login Success",
-//             data: {
-//                 user: {
-//                     name: checkEmail.name,
-//                     email: checkEmail.email,
-//                     token,
-//                 },
-//             },
-//         });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).send({
-//             status: "error",
-//             message: "Server Error",
-//         });
-//     }
-// };
+      res.send({
+         status: 'success',
+         message: 'User Valid',
+         data: {
+            user,
+         },
+      });
+   } catch (err) {
+      console.log(err);
+      res.status(500).send({
+         status: 'error',
+         message: 'Server Error',
+      });
+   }
+};
 
 exports.getUserById = async (req, res) => {
    try {
+      console.log('hitting getUserById-------------');
       const { id } = req.params;
       const getUser = await User.findByPk(id, {
          attributes: {
@@ -281,10 +236,11 @@ exports.getUserById = async (req, res) => {
       }
 
       if (getUser) {
+         console.log('success', getUser.id);
          return res.send({
             status: 'success',
             data: {
-               id: getUser,
+               user: getUser,
             },
          });
       }
@@ -303,7 +259,10 @@ exports.checkAuth = async (req, res) => {
    try {
       const user = await User.findOne({
          where: {
-            id: req.userId.id,
+            id: req.user.id,
+         },
+         attributes: {
+            exclude: ['createdAt', 'updatedAt', 'password', 'usernotif'],
          },
       });
 

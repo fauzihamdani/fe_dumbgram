@@ -55,7 +55,7 @@ exports.addPost = async (req, res) => {
 
       const feed = await Post.create({
          caption: req.body.caption,
-         filename: req.body.filename,
+         filename: req.files.fileUpload[0].filename,
          userId: idUser,
       });
 
@@ -72,6 +72,11 @@ exports.addPost = async (req, res) => {
                   exclude: ['password', 'createdAt', 'updatedAt', 'usernotif'],
                },
                as: 'user',
+            },
+            {
+               model: Comment,
+               attributes: { exclude: ['createdAt', 'updatedAt'] },
+               as: 'comment',
             },
             {
                model: Like,
@@ -152,20 +157,34 @@ exports.getPostsByFollowed = async (req, res) => {
          where: { userId: arrOfFollower },
          attributes: { exclude: ['createdAt', 'updatedAt', 'userId'] },
          order: [['createdAt', 'ASC']],
-         include: {
-            model: User,
-            attributes: {
-               exclude: [
-                  'createdAt',
-                  'updatedAt',
-                  'password',
-                  'image',
-                  'bio',
-                  'usernotif',
-               ],
+         include: [
+            {
+               model: User,
+               attributes: {
+                  exclude: [
+                     'createdAt',
+                     'updatedAt',
+                     'password',
+                     'image',
+                     'bio',
+                     'usernotif',
+                  ],
+               },
+               as: 'user',
             },
-            as: 'user',
-         },
+            {
+               model: Comment,
+               attributes: { exclude: ['createdAt', 'updatedAt'] },
+               as: 'comment',
+            },
+            {
+               model: Like,
+               attributes: {
+                  exclude: ['idUser'],
+               },
+               as: 'likes',
+            },
+         ],
       });
 
       res.send({
