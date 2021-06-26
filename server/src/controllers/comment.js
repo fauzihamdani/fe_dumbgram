@@ -3,15 +3,8 @@ const { Comment, User } = require('../../models/');
 exports.addComment = async (req, res) => {
    try {
       const { body } = req;
-      console.log('response body', body);
+      console.log('response body===================================', body);
       const idUser = req.user.id;
-      // console.log(idUser);
-
-      // if (!req.files.image)
-      //     return res.status(400).send({
-      //         status: "fail",
-      //         message: "image not found",
-      //     });
 
       const comment = await Comment.create({
          comment: req.body.comment,
@@ -34,7 +27,7 @@ exports.addComment = async (req, res) => {
       res.send({
          status: 'success',
          data: {
-            feed: commentWithUser,
+            comment: commentWithUser,
          },
       });
    } catch (error) {
@@ -43,10 +36,10 @@ exports.addComment = async (req, res) => {
 };
 
 exports.getComment = async (req, res) => {
-   const { idfeed } = req.params;
+   const { feedid } = req.params;
    try {
       const comment = await Comment.findAll({
-         where: { postId: idfeed },
+         where: { postId: feedid },
          attributes: {
             exclude: ['userId', 'postId', 'createdAt', 'updatedAt', 'PostId'],
          },

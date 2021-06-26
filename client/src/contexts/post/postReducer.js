@@ -9,6 +9,18 @@ export default (state, action) => {
          };
 
       case 'GET_FEEDS':
+         const data = {
+            id: payload.id,
+            caption: payload.caption,
+            filename: payload.filename,
+            like: payload.like,
+            userId: payload.userId,
+            createdAt: payload.createdAt,
+            updatedAt: payload.updatedAt,
+            user: payload.user,
+            comment: payload.comment,
+            likes: payload.likes,
+         };
          return {
             ...state,
             feeds: payload,
@@ -19,6 +31,33 @@ export default (state, action) => {
             ...state,
             feeds: payload,
             loading: false,
+         };
+
+      case 'GET_FEEDS_BY_ID':
+         return {
+            ...state,
+            feeds: payload,
+            loading: false,
+         };
+
+      case 'GET_COMMENTS_BY_ID':
+         return {
+            ...state,
+            comments: payload,
+            loading: false,
+         };
+
+      case 'ADD_LIKE':
+         return {
+            ...state,
+            loading: false,
+            likes: payload,
+         };
+      case 'ADD_COMMENT':
+         return {
+            ...state,
+            loading: false,
+            add: payload,
          };
 
       default:

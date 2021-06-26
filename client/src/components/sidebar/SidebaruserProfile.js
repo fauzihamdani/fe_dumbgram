@@ -102,7 +102,24 @@ function SidebarProfile() {
 
    return !loadingFollower ? (
       <div className="public-sidebar-container">
-         {}
+         {userData?.id === userInfo?.id ? (
+            <div className="edit-icon-container-outter">
+               <div className="asd"></div>
+               <Link to={'/edit-profile'}>
+                  <div className="edit-icon-container clicked button-a">
+                     <img
+                        className="image-size-100"
+                        src={EditIcon}
+                        alt=""
+                        srcset=""
+                     />
+                  </div>
+               </Link>
+            </div>
+         ) : (
+            <div></div>
+         )}
+
          <Link to={'/user-profile'}>
             <div className="public-sidebar-pp-name-container">
                <div className="public-sidebar-pp-container bg-image-pp-colorfull ">
@@ -110,7 +127,7 @@ function SidebarProfile() {
                </div>
                <div className="public-sidebar-name-container">
                   <div className="public-sidebar-name-account">
-                     <h1>{userInfo?.name}</h1>
+                     <h1>{userInfo?.name}</h1>{' '}
                   </div>
                   <div className="public-sidebar-username-account">
                      <p>@{userInfo?.username}</p>
@@ -118,18 +135,26 @@ function SidebarProfile() {
                </div>
             </div>
          </Link>
-         <div className="message-unfollow-container">
-            <div className="sidebar-message-button clicked button-a">
+
+         {userData?.id === userInfo?.id ? (
+            <div></div>
+         ) : (
+            <div>
                {' '}
-               <p>Message</p>
+               <div className="message-unfollow-container">
+                  <div className="sidebar-message-button clicked button-a">
+                     {' '}
+                     <p>Message</p>
+                  </div>
+                  <div
+                     className="sidebar-follow-button clicked button-a"
+                     onClick={addFollow}
+                  >
+                     {isFollowed ? <p>Unfollow</p> : <p>Follow</p>}
+                  </div>
+               </div>
             </div>
-            <div
-               className="sidebar-follow-button clicked button-a"
-               onClick={addFollow}
-            >
-               {isFollowed ? <p>Unfollow</p> : <p>Follow</p>}
-            </div>
-         </div>
+         )}
 
          <div className="public-sidebar-info-user clicked">
             <div className="public-sidebar-post-count-container public-sidebar-flex-col">
@@ -158,7 +183,9 @@ function SidebarProfile() {
             </div>
          </div>
 
-         <div className="bio-container">{/* <p>{userInfo.bio}</p> */}</div>
+         <div className="bio-container">
+            <p>{userInfo?.bio}</p>
+         </div>
 
          <div className="feed-explore-container">
             <Link to={'/feed'}>

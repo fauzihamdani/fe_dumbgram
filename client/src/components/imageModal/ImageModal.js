@@ -2,15 +2,48 @@ import { useState, useEffect, useContext } from 'react';
 import { FaRegHeart, FaHeart, FaComment } from 'react-icons/fa';
 import { AiOutlineSend } from 'react-icons/ai';
 import { BsChat } from 'react-icons/bs';
-import wtf from '../../assets/img/waterfall.png';
 import PP from '../../assets/img/ppchat.png';
-import ImageModalContext from '../../contexts/imageModal/imageModalContext';
+import PostContext from '../../contexts/post/postContext';
 
-function ImageModal({ handleClose, name, caption }) {
-   // imageModal Context=========================
-   const imageModalContext = useContext(ImageModalContext);
-   const { data, changeImageModal } = imageModalContext;
-   useEffect(() => {});
+function ImageModal({
+   caption,
+   name,
+   likes,
+   image,
+   isLiked,
+   addLikeButton,
+   feedId,
+   userDataId,
+}) {
+   // Initial Post Context=====================
+   const postContext = useContext(PostContext);
+   const { getCommentsById, comments, addComment } = postContext;
+   // =========================================
+   // Get Comments
+   useEffect(() => {
+      getCommentsById(feedId);
+   }, []);
+   //
+   //
+   // Comment Form Initialization
+   const [commentForm, setCommentForm] = useState({
+      comment: '',
+   });
+   const { comment } = commentForm;
+
+   const onChange = (e) => {
+      const updateCommentForm = { ...commentForm };
+      updateCommentForm[e.target.name] = e.target.value;
+      setCommentForm(updateCommentForm);
+   };
+
+   const submitComment = (comment, feedId) => {
+      const formData = new FormData();
+      formData.set('comment', commentForm.comment);
+
+      addComment(comment, feedId);
+   };
+
    return (
       <div
          className="modal-feed-container"
@@ -26,14 +59,14 @@ function ImageModal({ handleClose, name, caption }) {
          }
       >
          <div className="modal-feed-image-container">
-            <img className="image-size-100" src="" alt="" srcset="" />
+            <img className="image-size-100" src={image} alt="" srcset="" />
          </div>
          <div className="modal-feed-comments-container">
             <div className="modal-feed-close-button-container">
                <div className="modal-feed-close-null"></div>
                <div
                   className="modal-feed-close-button clicked button-a"
-                  onClick={handleClose}
+                  // onClick={handleClose}
                >
                   X
                </div>
@@ -75,6 +108,7 @@ function ImageModal({ handleClose, name, caption }) {
                </div>
 
                <div className="comment-scroll-container">
+                  {/* ---------- */}
                   <div
                      className="comment-content-container"
                      style={{
@@ -125,6 +159,20 @@ function ImageModal({ handleClose, name, caption }) {
                         hereComment hereComment hereComment here
                      </div>
                   </div>
+                  {/* ---------- */}
+                  {comments?.length > 0 ? 'true' : 'false'}
+                  {comments?.map((commentResult) => (
+                     <h1>{commentResult.comment}</h1>
+                  ))}
+                  <pre
+                     style={{
+                        color: 'white',
+                        fontSize: '1.8rem',
+                     }}
+                  >
+                     {JSON.stringify(comments, 2, 4)}
+                     {console.log(comments)}
+                  </pre>
                </div>
 
                <div
@@ -132,7 +180,7 @@ function ImageModal({ handleClose, name, caption }) {
                   style={{
                      fontSize: '1.5rem',
                      display: 'flex',
-                     gap: '1rem',
+                     gap: '0.5rem',
                      justifyContent: 'flex-end',
                   }}
                >
@@ -144,6 +192,13 @@ function ImageModal({ handleClose, name, caption }) {
                   ></div>
                   <div className="actions-modal-inner-wrapper">
                      <div
+                        onClick={() =>
+                           addLikeButton(
+                              feedId,
+                              userDataId,
+                              isLiked ? false : true
+                           )
+                        }
                         className=""
                         style={{
                            fontSize: '1.5rem',
@@ -156,7 +211,15 @@ function ImageModal({ handleClose, name, caption }) {
                            className="text-modal-color button-a clicked"
                            style={{ fontSize: '2rem' }}
                         >
-                           <FaRegHeart />
+                           {isLiked ? (
+                              <i style={{ fontSize: '2rem', color: 'red' }}>
+                                 <FaHeart />
+                              </i>
+                           ) : (
+                              <i style={{ fontSize: '2rem' }}>
+                                 <FaRegHeart />
+                              </i>
+                           )}
                         </i>{' '}
                         <i
                            className="text-modal-color button-a clicked"
@@ -175,13 +238,19 @@ function ImageModal({ handleClose, name, caption }) {
                         className="text-modal-color"
                         style={{ fontSize: '1.7rem' }}
                      >
-                        156.290 Like
+                        {likes} Like
                      </div>
                   </div>
                </div>
 
                <div className="comment-input-container">
-                  <form action="">
+                  <form
+                     onSubmit={(e) => {
+                        submitComment(comment, feedId);
+                        e.preventDefault();
+                     }}
+                     autocomplete="off"
+                  >
                      <input
                         spellcheck="false"
                         style={{
@@ -191,10 +260,12 @@ function ImageModal({ handleClose, name, caption }) {
                         className="form-size-100 form-design"
                         type="text"
                         name="comment"
+                        value={comment}
                         id=""
-                        //    value=""
+                        onChange={onChange}
                         placeholder="Comment"
                      />
+                     <input type="submit" />
                   </form>
                </div>
             </div>
@@ -204,3 +275,66 @@ function ImageModal({ handleClose, name, caption }) {
 }
 
 export default ImageModal;
+{
+   /* Looping Comment */
+}
+
+// {comments > 0 &&
+//    comments.map((comment) => {
+//       {
+//          comment ? <div>true</div> : <div>false</div>;
+//       }
+//       <div>{comment.comment}</div>;
+// <div
+//    className="comment-content-container"
+//    style={{
+//       marginBottom: '2rem',
+//    }}
+// >
+//    <div
+//       className="modal-image-name-container"
+//       style={{
+//          // marginTop: '1rem',
+//          padding: '2rem 0',
+//          width: '29rem',
+//          overflowWrap: 'break-word',
+//          display: 'flex',
+//          gap: '1rem',
+//          alignItems: 'center',
+//       }}
+//    >
+//       <div className="1 ">
+//          <div
+//             className="bg-image-pp-colorfull"
+//             style={{
+//                width: '3rem',
+//                height: '3rem ',
+//             }}
+//          >
+//             <img
+//                src={PP}
+//                className="image-size-100"
+//                alt=""
+//                srcset=""
+//             />
+//          </div>
+//       </div>
+//       <div
+//          className="2 text-modal-color-white"
+//          style={{
+//             overflowWrap: 'break-word',
+//             width: '20rem',
+//          }}
+//       >
+//          {' '}
+//          {comment.user.name}
+//       </div>
+//    </div>
+//    <div className="text-modal-color">
+//       {comment.comment}
+//    </div>
+// </div>;
+// })}
+{
+   /* End Looping container */
+}

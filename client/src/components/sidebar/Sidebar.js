@@ -62,7 +62,7 @@ function Sidebar() {
                </Link>
             </div>
          )}
-         <Link to={'/user-profile/2'}>
+         <Link to={'/user-profile/1'}>
             <div className="public-sidebar-pp-name-container">
                <div className="public-sidebar-pp-container bg-image-pp-colorfull ">
                   <img className="image-size-100" src={PP} alt="" srcset="" />

@@ -4,11 +4,90 @@ const { addFollower } = require('./follower');
 exports.getPosts = async (req, res) => {
    try {
       const feed = await Post.findAll({
+         attributes: { exclude: ['createdAt', 'updatedAt', 'userId'] },
+         order: [['createdAt', 'ASC']],
          include: [
             {
                model: User,
                attributes: {
-                  exclude: ['createdAt', 'updatedAt', 'password', 'id'],
+                  exclude: ['createdAt', 'updatedAt', 'password'],
+               },
+               as: 'user',
+            },
+            {
+               model: Comment,
+               attributes: { exclude: ['createdAt', 'updatedAt'] },
+               as: 'comment',
+            },
+            {
+               model: Like,
+               attributes: { exclude: ['createdAt', 'updatedAt', 'idUser'] },
+               as: 'likes',
+            },
+         ],
+      });
+
+      res.send({
+         status: 'success',
+         data: {
+            feed: feed,
+         },
+      });
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+exports.getPostsById = async (req, res) => {
+   try {
+      const { userId } = req.params;
+      const feed = await Post.findAll({
+         where: { userId: userId },
+         attributes: { exclude: ['createdAt', 'updatedAt', 'userId'] },
+         order: [['createdAt', 'ASC']],
+         include: [
+            {
+               model: User,
+               attributes: {
+                  exclude: ['createdAt', 'updatedAt', 'password'],
+               },
+               as: 'user',
+            },
+            {
+               model: Comment,
+               attributes: { exclude: ['createdAt', 'updatedAt'] },
+               as: 'comment',
+            },
+            {
+               model: Like,
+               attributes: { exclude: ['createdAt', 'updatedAt', 'idUser'] },
+               as: 'likes',
+            },
+         ],
+      });
+
+      res.send({
+         status: 'success',
+         data: {
+            feed: feed,
+         },
+      });
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+exports.getPostsByUser = async (req, res) => {
+   try {
+      const feed = await Post.findAll({
+         where: { id: req.user.id },
+         attributes: { exclude: ['createdAt', 'updatedAt', 'userId'] },
+         order: [['createdAt', 'ASC']],
+         include: [
+            {
+               model: User,
+               attributes: {
+                  exclude: ['createdAt', 'updatedAt', 'password'],
                },
                as: 'user',
             },
@@ -141,7 +220,7 @@ exports.getPostsByFollowed = async (req, res) => {
    try {
       const getFollower = await Follower.findAll({
          where: {
-            userid: req.user.id,
+            userId: req.user.id,
          },
          attributes: ['userFollowId'],
          // as: 'getuserToId',

@@ -12,6 +12,7 @@ import AuthState from './contexts/auth/authState';
 import PostState from './contexts/post/postState';
 import FollowerState from './contexts/follower/followerState';
 import ImageModalState from './contexts/imageModal/imageModalState';
+import LikeState from './contexts/like/likeState';
 
 import Index from './pages/Index';
 import { setAuthToken } from './config/api';
@@ -34,45 +35,51 @@ function App() {
          <AuthState>
             <PostState>
                <FollowerState>
-                  <ImageModalState>
-                     <Router>
-                        <Switch>
-                           <Route path="/" component={Index} exact />
+                  <LikeState>
+                     <ImageModalState>
+                        <Router>
+                           <Switch>
+                              <Route path="/" component={Index} exact />
 
-                           <PrivateRoute
-                              path="/create-post"
-                              component={CreatePost}
-                              exact
-                           />
-                           <PrivateRoute
-                              path="/message"
-                              component={Message}
-                              exact
-                           />
-                           <PrivateRoute
-                              path="/selected-message"
-                              component={MessageChoosen}
-                              exact
-                           />
-                           <PrivateRoute
-                              path="/edit-profile"
-                              component={EditProfile}
-                              exact
-                           />
-                           <PrivateRoute path="/feed" component={Feed} exact />
-                           <PrivateRoute
-                              path="/explore"
-                              component={Explore}
-                              exact
-                           />
-                           <PrivateRoute
-                              path="/user-profile/:id"
-                              component={ProfileUser}
-                              exact
-                           />
-                        </Switch>
-                     </Router>
-                  </ImageModalState>
+                              <PrivateRoute
+                                 path="/create-post"
+                                 component={CreatePost}
+                                 exact
+                              />
+                              <PrivateRoute
+                                 path="/message"
+                                 component={Message}
+                                 exact
+                              />
+                              <PrivateRoute
+                                 path="/selected-message"
+                                 component={MessageChoosen}
+                                 exact
+                              />
+                              <PrivateRoute
+                                 path="/edit-profile"
+                                 component={EditProfile}
+                                 exact
+                              />
+                              <PrivateRoute
+                                 path="/feed"
+                                 component={Feed}
+                                 exact
+                              />
+                              <PrivateRoute
+                                 path="/explore"
+                                 component={Explore}
+                                 exact
+                              />
+                              <PrivateRoute
+                                 path="/user-profile/:id"
+                                 component={ProfileUser}
+                                 exact
+                              />
+                           </Switch>
+                        </Router>
+                     </ImageModalState>
+                  </LikeState>
                </FollowerState>
             </PostState>
          </AuthState>

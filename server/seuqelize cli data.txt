@@ -12,7 +12,11 @@ BE
  updateUser, done
 
 INTEGRATION
- modal image
+ modal image = ?
  profile user = done
- followed / notFollowed
- 
+ followed / notFollowed = done
+ image profile default when register = ?
+ input & show comment = ?
+ edit profile = ?
+ message = ?
+

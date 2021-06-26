@@ -74,8 +74,250 @@ function Navbar() {
                         style={{
                            backgroundColor: '#0b0b0b',
                            width: '30rem',
+                           height: '30rem',
+                           overflowY: 'auto',
                         }}
                      >
+                        <Dropdown.Item
+                           href="#/action-1"
+                           style={{
+                              color: 'white',
+                              fontSize: '1.5rem',
+                           }}
+                        >
+                           <div className="dropdown-item">
+                              <div className="dropdown-item-photo-name">
+                                 <div
+                                    className="dropdown-item-photo-container bg-image-pp-colorfull"
+                                    style={{
+                                       width: '4rem',
+                                       height: '4rem',
+                                    }}
+                                 >
+                                    <img
+                                       src={PP}
+                                       className="image-size-100"
+                                       alt=""
+                                       srcset=""
+                                    />
+                                 </div>
+
+                                 <div
+                                    className="dropdown-name-container"
+                                    style={{
+                                       width: '3rem',
+                                       height: '3rem',
+                                       color: 'white',
+                                    }}
+                                 >
+                                    <p>abdul_h</p>
+                                 </div>
+                              </div>
+                              <div
+                                 style={{ paddingLeft: '5rem' }}
+                                 className="dropdown-item-text"
+                              >
+                                 <p style={{ color: 'white' }}>
+                                    Komentar:{' '}
+                                    <span style={{ color: '#5c5c5c' }}>
+                                       Nice Place
+                                    </span>
+                                 </p>
+                              </div>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                           href="#/action-1"
+                           style={{
+                              color: 'white',
+                              fontSize: '1.5rem',
+                           }}
+                        >
+                           <div className="dropdown-item">
+                              <div className="dropdown-item-photo-name">
+                                 <div
+                                    className="dropdown-item-photo-container bg-image-pp-colorfull"
+                                    style={{
+                                       width: '4rem',
+                                       height: '4rem',
+                                    }}
+                                 >
+                                    <img
+                                       src={PP}
+                                       className="image-size-100"
+                                       alt=""
+                                       srcset=""
+                                    />
+                                 </div>
+
+                                 <div
+                                    className="dropdown-name-container"
+                                    style={{
+                                       width: '3rem',
+                                       height: '3rem',
+                                       color: 'white',
+                                    }}
+                                 >
+                                    <p>abdul_h</p>
+                                 </div>
+                              </div>
+                              <div
+                                 style={{ paddingLeft: '5rem' }}
+                                 className="dropdown-item-text"
+                              >
+                                 <p style={{ color: 'white' }}>
+                                    Komentar:{' '}
+                                    <span style={{ color: '#5c5c5c' }}>
+                                       Nice Place
+                                    </span>
+                                 </p>
+                              </div>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                           href="#/action-1"
+                           style={{
+                              color: 'white',
+                              fontSize: '1.5rem',
+                           }}
+                        >
+                           <div className="dropdown-item">
+                              <div className="dropdown-item-photo-name">
+                                 <div
+                                    className="dropdown-item-photo-container bg-image-pp-colorfull"
+                                    style={{
+                                       width: '4rem',
+                                       height: '4rem',
+                                    }}
+                                 >
+                                    <img
+                                       src={PP}
+                                       className="image-size-100"
+                                       alt=""
+                                       srcset=""
+                                    />
+                                 </div>
+
+                                 <div
+                                    className="dropdown-name-container"
+                                    style={{
+                                       width: '3rem',
+                                       height: '3rem',
+                                       color: 'white',
+                                    }}
+                                 >
+                                    <p>abdul_h</p>
+                                 </div>
+                              </div>
+                              <div
+                                 style={{ paddingLeft: '5rem' }}
+                                 className="dropdown-item-text"
+                              >
+                                 <p style={{ color: 'white' }}>
+                                    Komentar:{' '}
+                                    <span style={{ color: '#5c5c5c' }}>
+                                       Nice Place
+                                    </span>
+                                 </p>
+                              </div>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                           href="#/action-1"
+                           style={{
+                              color: 'white',
+                              fontSize: '1.5rem',
+                           }}
+                        >
+                           <div className="dropdown-item">
+                              <div className="dropdown-item-photo-name">
+                                 <div
+                                    className="dropdown-item-photo-container bg-image-pp-colorfull"
+                                    style={{
+                                       width: '4rem',
+                                       height: '4rem',
+                                    }}
+                                 >
+                                    <img
+                                       src={PP}
+                                       className="image-size-100"
+                                       alt=""
+                                       srcset=""
+                                    />
+                                 </div>
+
+                                 <div
+                                    className="dropdown-name-container"
+                                    style={{
+                                       width: '3rem',
+                                       height: '3rem',
+                                       color: 'white',
+                                    }}
+                                 >
+                                    <p>abdul_h</p>
+                                 </div>
+                              </div>
+                              <div
+                                 style={{ paddingLeft: '5rem' }}
+                                 className="dropdown-item-text"
+                              >
+                                 <p style={{ color: 'white' }}>
+                                    Komentar:{' '}
+                                    <span style={{ color: '#5c5c5c' }}>
+                                       Nice Place
+                                    </span>
+                                 </p>
+                              </div>
+                           </div>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                           href="#/action-1"
+                           style={{
+                              color: 'white',
+                              fontSize: '1.5rem',
+                           }}
+                        >
+                           <div className="dropdown-item">
+                              <div className="dropdown-item-photo-name">
+                                 <div
+                                    className="dropdown-item-photo-container bg-image-pp-colorfull"
+                                    style={{
+                                       width: '4rem',
+                                       height: '4rem',
+                                    }}
+                                 >
+                                    <img
+                                       src={PP}
+                                       className="image-size-100"
+                                       alt=""
+                                       srcset=""
+                                    />
+                                 </div>
+
+                                 <div
+                                    className="dropdown-name-container"
+                                    style={{
+                                       width: '3rem',
+                                       height: '3rem',
+                                       color: 'white',
+                                    }}
+                                 >
+                                    <p>abdul_h</p>
+                                 </div>
+                              </div>
+                              <div
+                                 style={{ paddingLeft: '5rem' }}
+                                 className="dropdown-item-text"
+                              >
+                                 <p style={{ color: 'white' }}>
+                                    Komentar:{' '}
+                                    <span style={{ color: '#5c5c5c' }}>
+                                       Nice Place
+                                    </span>
+                                 </p>
+                              </div>
+                           </div>
+                        </Dropdown.Item>
                         <Dropdown.Item
                            href="#/action-1"
                            style={{

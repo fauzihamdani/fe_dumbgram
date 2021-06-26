@@ -25,7 +25,7 @@ exports.addLike = async (req, res) => {
          return res.send({
             status: 'success',
             data: {
-               deletedDataLike: deletedLike,
+               like: deletedLike,
             },
          });
       }
@@ -50,7 +50,7 @@ exports.addLike = async (req, res) => {
       res.send({
          status: 'success',
          data: {
-            feed: likeWithPost,
+            like: likeWithPost,
          },
       });
    } catch (error) {

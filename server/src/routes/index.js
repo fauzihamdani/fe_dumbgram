@@ -16,9 +16,11 @@ const {
 
 const {
    getPosts,
+   getPostsById,
    addPost,
    // addLike,
    getPostsByFollowed,
+   getPostsByUser,
 } = require('../controllers/post');
 
 const {
@@ -37,14 +39,21 @@ router.get('/user-by-id/:id', authenticated, getUserById);
 router.post('/login', login);
 router.post('/register', registerUser);
 router.delete('/user/:id', authenticated, deleteUser);
-router.patch('/user/:iduser', authenticated, updateUser);
+router.patch(
+   '/user/:iduser',
+   authenticated,
+   uploadFile('fileUpload'),
+   updateUser
+);
 router.get('/check-auth', authenticated, checkAuth);
 
 // feed api
-router.get('/feed', getPosts);
+router.get('/feed', authenticated, getPosts);
 router.post('/feed', authenticated, uploadFile('fileUpload'), addPost);
 // router.post('/like', authenticated, addLike);
 router.get('/feed-by-followed', authenticated, getPostsByFollowed);
+router.get('/feed-by-id/userId', authenticated, getPostsById);
+router.get('/feed-by-user', authenticated, getPostsByUser);
 
 // follower api
 router.post('/add-follower', authenticated, addFollower);
@@ -52,8 +61,8 @@ router.get('/following/:userid', authenticated, getFollowing);
 router.get('/follower/:userid', authenticated, getFollower);
 
 // comment api
-router.post('/add-comment', authenticated, addComment);
-router.get('/comments/:idfeed', authenticated, getComment);
+router.post('/comment', authenticated, addComment);
+router.get('/comments/:feedid', authenticated, getComment);
 
 // chat api
 router.post('/message/:iduserto', authenticated, insertChat);
