@@ -10,6 +10,7 @@ import PostContext from '../contexts/post/postContext';
 import ImageModalContext from '../contexts/imageModal/imageModalContext';
 import ImageModal from '../components/imageModal/ImageModal';
 import '../styles/imageLayout/image-layout.css';
+import { API, setAuthToken } from '../config/api';
 
 function Explore() {
    // imageModal Context=========================
@@ -20,18 +21,32 @@ function Explore() {
    const postContext = useContext(PostContext);
    const { feeds, getFeeds, loading } = postContext;
 
+   // const [feeds, setFeeds] = useState([]);
+   // const [loading, setLoading] = useState(true);
+
+   // const getFeeds = async () => {
+   //    console.log('Running getPost State');
+   //    try {
+   //       const config = {
+   //          headers: {
+   //             'Content-type': 'application/json',
+   //          },
+   //       };
+   //       const res = await API.get(`/feed`, config);
+
+   //       setFeeds(res.data.data.feed);
+   //       setLoading(false);
+   //    } catch (error) {
+   //       console.log(error);
+   //    }
+   // };
+
    useEffect(() => {
       getFeeds();
    }, []);
 
    // usestate modal
-   const [dataModal, setDataModal] = useState({
-      name: '',
-      caption: '',
-      // filename:'',
-      // comment:null,
-      // like:''
-   });
+
    return (
       <div>
          <Navbar />
@@ -41,14 +56,14 @@ function Explore() {
                <PageTitle title="Explore" />
                <div className="image-layout-container">
                   {/* =============== */}
-                  {feeds !== null && !loading ? (
+                  {feeds !== null && feeds.length !== 0 ? (
                      !loading ? (
-                        feeds.map((feed) => {
+                        feeds?.map((feed) => {
                            return (
                               <PostCard
                                  PP={PP}
                                  feed={feed}
-                                 dataModal={dataModal}
+                                 getFeeds={getFeeds}
                               />
                            );
                         })
@@ -61,11 +76,6 @@ function Explore() {
                   {/* =============== */}
                </div>
             </div>
-         </div>
-         <div>
-            <pre style={{ color: 'white', fontSize: '1.5rem' }}>
-               {JSON.stringify(feeds, 2, 4)}
-            </pre>
          </div>
       </div>
    );

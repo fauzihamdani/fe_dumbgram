@@ -7,13 +7,19 @@ import Explore from '../../assets/svg/explore.svg';
 import Feed from '../../assets/svg/feed.svg';
 import Logout from '../../assets/svg/logout.svg';
 import AuthContext from '../../contexts/auth/authContext';
+import PostCntext from '../../contexts/post/postContext';
 import FollowerContext from '../../contexts/follower/followerContext';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import PostContext from '../../contexts/post/postContext';
 function Sidebar() {
    const history = useHistory();
    const location = useLocation();
    const [showed, setShowed] = useState(true);
+
+   // initialize Post Context
+   const postContext = useContext(PostContext);
+   const { getFeedsById, feedProfile } = postContext;
 
    // get follower info context====================
    const followerContext = useContext(FollowerContext);
@@ -34,13 +40,23 @@ function Sidebar() {
    useEffect(() => {
       loadUser();
    }, []);
-
+   //
+   //
+   // Get User Followwer
    useEffect(() => {
       getFollowers(userData.id);
    }, []);
-
+   //
+   //
+   // Get User Following
    useEffect(() => {
       getFollowing(userData.id);
+   }, []);
+   //
+   //
+   // GetFeed
+   useEffect(() => {
+      getFeedsById(userData.id);
    }, []);
    return (
       <div className="public-sidebar-container">
@@ -62,10 +78,16 @@ function Sidebar() {
                </Link>
             </div>
          )}
-         <Link to={'/user-profile/1'}>
+         <Link to={`/user-profile/${userData.id}`}>
+            {/* <Link to={`/user-profile/1`}> */}
             <div className="public-sidebar-pp-name-container">
                <div className="public-sidebar-pp-container bg-image-pp-colorfull ">
-                  <img className="image-size-100" src={PP} alt="" srcset="" />
+                  <img
+                     className="image-size-100-rounded"
+                     src={`http://localhost:5000/uploads/${userData?.image}`}
+                     alt=""
+                     srcset=""
+                  />
                </div>
                <div className="public-sidebar-name-container">
                   <div className="public-sidebar-name-account">
@@ -97,7 +119,7 @@ function Sidebar() {
                   Post
                </div>
                <div className="public-sidebar-post-number public-sidebar-number-info">
-                  200
+                  {feedProfile?.length}
                </div>
             </div>
             <div className="public-sidebar-follower-count-container public-sidebar-flex-col">
@@ -128,11 +150,20 @@ function Sidebar() {
                   <div className="feed-icon-container button-a clicked">
                      <img className="image-size-100" src={Feed} alt="" />
                   </div>
-
-                  <div className="feed-text-container button-a clicked">
-                     {' '}
-                     Feed
-                  </div>
+                  {location.pathname === '/feed' ? (
+                     <div
+                        className="feed-text-container button-a clicked"
+                        style={{ color: 'white' }}
+                     >
+                        {' '}
+                        Feed
+                     </div>
+                  ) : (
+                     <div className="feed-text-container button-a clicked">
+                        {' '}
+                        Feed
+                     </div>
+                  )}
                </div>
             </Link>
             <Link to={'/explore'}>
@@ -144,9 +175,18 @@ function Sidebar() {
                         alt=""
                      />
                   </div>
-                  <div className="explore-text-container button-a clicked">
-                     Explore
-                  </div>
+                  {location.pathname === '/explore' ? (
+                     <div
+                        style={{ color: 'white' }}
+                        className="explore-text-container button-a clicked"
+                     >
+                        Explore
+                     </div>
+                  ) : (
+                     <div className="explore-text-container button-a clicked">
+                        Explore
+                     </div>
+                  )}
                </div>
             </Link>
          </div>

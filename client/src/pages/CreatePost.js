@@ -38,6 +38,7 @@ function EditProfile() {
          postForm.uploadphotosvideos[0].name
       );
       addFeed(formData);
+      setPreview('');
    };
    return (
       <div>
@@ -80,25 +81,26 @@ function EditProfile() {
                            value={caption}
                         ></textarea>
                      </div>
-                     <div>
-                        <button
+                     {/* <div> */}
+                     {/* <button
                            className="input-button-edit-profile"
                            type="submit"
+                           style={{ backgroundColor: 'green' }}
+                        > */}
+                     <div className="null"></div>
+                     <label
+                        className="upload-photos-button clicked button-a"
+                        style={{ width: '15rem' }}
+                     >
+                        <p
+                           style={{ fontWeight: 'bold' }}
+                           className="edit-profile"
                         >
-                           <div className="null"></div>
-                           <div
-                              className="upload-photos-button clicked button-a"
-                              style={{ width: '15rem' }}
-                           >
-                              <p
-                                 style={{ fontWeight: 'bold' }}
-                                 className="edit-profile"
-                              >
-                                 Upload
-                              </p>
-                           </div>
-                        </button>
-                     </div>
+                           Upload
+                        </p>
+                     </label>
+                     {/* </button> */}
+                     {/* </div> */}
                   </form>
                </div>
             </div>

@@ -12,6 +12,7 @@ import PP from '../assets/img/ppchat.png';
 import PostContext from '../contexts/post/postContext';
 import ImageModalContext from '../contexts/imageModal/imageModalContext';
 import ImageModal from '../components/imageModal/ImageModal';
+import AuthContext from '../contexts/auth/authContext';
 
 function ProfileUser() {
    const params = useParams();
@@ -32,10 +33,17 @@ function ProfileUser() {
 
    // Feed / Post Context========================
    const postContext = useContext(PostContext);
-   const { feeds, getFeeds, getFeedsById, loading } = postContext;
+   const { feedProfile, getFeedsById, loading } = postContext;
+   //
+   //
+   // auth Context========================
+   const authContext = useContext(AuthContext);
+   const { userInfo, getUserInfo, userData, loadUser } = authContext;
 
    useEffect(() => {
       getFeedsById(id);
+      getUserInfo(id);
+      loadUser();
    }, []);
 
    // ============== Modal image Controller====================
@@ -55,17 +63,21 @@ function ProfileUser() {
          <div className="container__2 display-flex">
             <SidebarUserProfile />
             <div className="pages-container-padding ">
-               <PageTitle title="Zayn's, Feed" />
+               {userInfo?.id === userData?.id ? (
+                  <PageTitle title={`Your, Feed(s) `} />
+               ) : (
+                  <PageTitle title={`${userInfo?.name}'s, Feed(s) `} />
+               )}
+
                <div className="image-layout-container">
                   {/* =============== */}
-                  {feeds === !null ? (
+                  {feedProfile !== null || feedProfile.length !== 0 ? (
                      !loading ? (
-                        feeds.map((feed) => {
+                        feedProfile?.map((feed) => {
                            return (
                               <PostCard
                                  PP={PP}
                                  feed={feed}
-                                 handleShow={handleShow}
                                  dataModal={dataModal}
                               />
                            );
@@ -77,22 +89,6 @@ function ProfileUser() {
                      <h1> Follow someone in order to get Feeds on this page</h1>
                   )}
                   {/* =============== */}
-
-                  <Modal
-                     className="modal-container modal-90w"
-                     // dialogClassName="modal-90w"
-                     size="lg"
-                     show={show}
-                     onHide={handleClose}
-                     // centered
-                     rounded
-                  >
-                     <ImageModal
-                        handleClose={handleClose}
-                        name={dataModal.name}
-                        caption={dataModal.caption}
-                     />
-                  </Modal>
                </div>
             </div>
          </div>

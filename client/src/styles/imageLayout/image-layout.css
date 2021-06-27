@@ -10,6 +10,15 @@
    width: 43rem;
 }
 
+.image-info {
+   padding: 0 1rem;
+   /* background-color: green; */
+   height: 7rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
 .image-info-user {
    display: flex;
    align-items: center;
@@ -18,15 +27,6 @@
 
 .image-info-user-container {
    display: flex;
-}
-
-.image-info {
-   padding: 0 1rem;
-   /* background-color: green; */
-   height: 7rem;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
 }
 
 .image-info-user-count {

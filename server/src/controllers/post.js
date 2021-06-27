@@ -5,7 +5,7 @@ exports.getPosts = async (req, res) => {
    try {
       const feed = await Post.findAll({
          attributes: { exclude: ['createdAt', 'updatedAt', 'userId'] },
-         order: [['createdAt', 'ASC']],
+         order: [['createdAt', 'DESC']],
          include: [
             {
                model: User,
@@ -232,10 +232,12 @@ exports.getPostsByFollowed = async (req, res) => {
          arrOfFollower.push(followerId.userFollowId);
       });
 
+      var getPostFromFollower = [req.user.id, ...arrOfFollower];
+
       const feed = await Post.findAll({
-         where: { userId: arrOfFollower },
+         where: { userId: getPostFromFollower },
          attributes: { exclude: ['createdAt', 'updatedAt', 'userId'] },
-         order: [['createdAt', 'ASC']],
+         order: [['createdAt', 'DESC']],
          include: [
             {
                model: User,
@@ -244,7 +246,6 @@ exports.getPostsByFollowed = async (req, res) => {
                      'createdAt',
                      'updatedAt',
                      'password',
-                     'image',
                      'bio',
                      'usernotif',
                   ],

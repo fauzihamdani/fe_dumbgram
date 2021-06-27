@@ -1,4 +1,42 @@
-npx sequelize model:generate --name Post --attributes caption:string,filename:string,like:integer,userId:integer
+
+
+INTEGRATION
+ modal image = done
+ profile user = done
+ followed / notFollowed = done
+ default profile image when register = done
+ input & show comment = done
+ link every photo profile = done
+ feed & explore page = done
+
+ Notification = ?
+ edit profile = ?
+ message = ?
+ fix create button = ?
+  mansonry = ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   npx sequelize model:generate --name Post --attributes caption:string,filename:string,like:integer,userId:integer
  npx sequelize model:generate --name User --attributes email:string,name:string,username:string,password:string,image:string,bio:string,usernotif:boolean
 
  need tobe done:
@@ -10,13 +48,3 @@ BE
  userto parameter when add messeages, done
  validation,done
  updateUser, done
-
-INTEGRATION
- modal image = ?
- profile user = done
- followed / notFollowed = done
- image profile default when register = ?
- input & show comment = ?
- edit profile = ?
- message = ?
-

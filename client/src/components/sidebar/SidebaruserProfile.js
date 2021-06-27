@@ -105,25 +105,28 @@ function SidebarProfile() {
          {userData?.id === userInfo?.id ? (
             <div className="edit-icon-container-outter">
                <div className="asd"></div>
-               <Link to={'/edit-profile'}>
-                  <div className="edit-icon-container clicked button-a">
-                     <img
-                        className="image-size-100"
-                        src={EditIcon}
-                        alt=""
-                        srcset=""
-                     />
-                  </div>
-               </Link>
+               <div className="edit-icon-container clicked button-a">
+                  <img
+                     className="image-size-100"
+                     src={EditIcon}
+                     alt=""
+                     srcset=""
+                  />
+               </div>
             </div>
          ) : (
             <div></div>
          )}
 
-         <Link to={'/user-profile'}>
+         <Link to={`/user-profile/${userInfo?.id}`}>
             <div className="public-sidebar-pp-name-container">
                <div className="public-sidebar-pp-container bg-image-pp-colorfull ">
-                  <img className="image-size-100" src={PP} alt="" srcset="" />
+                  <img
+                     className="image-size-100-rounded"
+                     src={`http://localhost:5000/uploads/${userData?.image}`}
+                     alt=""
+                     srcset=""
+                  />
                </div>
                <div className="public-sidebar-name-container">
                   <div className="public-sidebar-name-account">

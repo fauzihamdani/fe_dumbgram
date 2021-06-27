@@ -52,7 +52,7 @@ router.get('/feed', authenticated, getPosts);
 router.post('/feed', authenticated, uploadFile('fileUpload'), addPost);
 // router.post('/like', authenticated, addLike);
 router.get('/feed-by-followed', authenticated, getPostsByFollowed);
-router.get('/feed-by-id/userId', authenticated, getPostsById);
+router.get('/feed-by-id/:userId', authenticated, getPostsById);
 router.get('/feed-by-user', authenticated, getPostsByUser);
 
 // follower api

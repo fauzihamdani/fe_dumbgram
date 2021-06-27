@@ -4,6 +4,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 import { BsChat } from 'react-icons/bs';
 import PP from '../../assets/img/ppchat.png';
 import PostContext from '../../contexts/post/postContext';
+import { Link } from 'react-router-dom';
 
 function ImageModal({
    caption,
@@ -14,11 +15,15 @@ function ImageModal({
    addLikeButton,
    feedId,
    userDataId,
+   userFeedId,
+   userDataImage,
 }) {
    // Initial Post Context=====================
    const postContext = useContext(PostContext);
    const { getCommentsById, comments, addComment } = postContext;
    // =========================================
+   //
+   //
    // Get Comments
    useEffect(() => {
       getCommentsById(feedId);
@@ -37,11 +42,13 @@ function ImageModal({
       setCommentForm(updateCommentForm);
    };
 
+   // Submit Comment function
    const submitComment = (comment, feedId) => {
       const formData = new FormData();
       formData.set('comment', commentForm.comment);
 
       addComment(comment, feedId);
+      setCommentForm({ comment: '' });
    };
 
    return (
@@ -64,12 +71,7 @@ function ImageModal({
          <div className="modal-feed-comments-container">
             <div className="modal-feed-close-button-container">
                <div className="modal-feed-close-null"></div>
-               <div
-                  className="modal-feed-close-button clicked button-a"
-                  // onClick={handleClose}
-               >
-                  X
-               </div>
+               <div className="modal-feed-close-button clicked button-a">X</div>
             </div>
             <div className="comment-form--comment-container">
                <div className="caption-container">
@@ -89,12 +91,14 @@ function ImageModal({
                            height: '3rem ',
                         }}
                      >
-                        <img
-                           src={PP}
-                           className="image-size-100"
-                           alt=""
-                           srcset=""
-                        />
+                        <Link to={`/user-profile/${userFeedId}`}>
+                           <img
+                              src={userDataImage}
+                              className="image-size-100-rounded"
+                              alt=""
+                              srcset=""
+                           />
+                        </Link>
                      </div>
                      <div className="text-modal-color-white">{name}</div>
                   </div>
@@ -109,70 +113,67 @@ function ImageModal({
 
                <div className="comment-scroll-container">
                   {/* ---------- */}
-                  <div
-                     className="comment-content-container"
-                     style={{
-                        marginBottom: '2rem',
-                     }}
-                  >
+                  {comments?.map((commentResult) => (
                      <div
-                        className="modal-image-name-container"
+                        className="comment-content-container"
                         style={{
-                           // marginTop: '1rem',
-                           padding: '2rem 0',
-                           width: '29rem',
-                           overflowWrap: 'break-word',
-                           display: 'flex',
-                           gap: '1rem',
-                           alignItems: 'center',
+                           marginBottom: '2rem',
                         }}
                      >
-                        <div className="1 ">
-                           <div
-                              className="bg-image-pp-colorfull"
-                              style={{
-                                 width: '3rem',
-                                 height: '3rem ',
-                              }}
-                           >
-                              <img
-                                 src={PP}
-                                 className="image-size-100"
-                                 alt=""
-                                 srcset=""
-                              />
-                           </div>
-                        </div>
                         <div
-                           className="2 text-modal-color-white"
+                           className="modal-image-name-container"
                            style={{
+                              // marginTop: '1rem',
+                              padding: '2rem 0',
+                              width: '29rem',
                               overflowWrap: 'break-word',
-                              width: '20rem',
+                              display: 'flex',
+                              gap: '1rem',
+                              alignItems: 'center',
                            }}
                         >
-                           {' '}
-                           Zayn
+                           <div className="1 ">
+                              <div
+                                 className="bg-image-pp-colorfull"
+                                 style={{
+                                    width: '3rem',
+                                    height: '3rem ',
+                                 }}
+                              >
+                                 <Link
+                                    to={`/user-profile/${commentResult.user.id}`}
+                                 >
+                                    <img
+                                       src={`http://localhost:5000/uploads/${commentResult.user.image}`}
+                                       className="image-size-100-rounded"
+                                       alt=""
+                                       srcset=""
+                                    />
+                                 </Link>
+                              </div>
+                           </div>
+                           <div
+                              className="2 text-modal-color-white"
+                              style={{
+                                 overflowWrap: 'break-word',
+                                 width: '20rem',
+                              }}
+                           >
+                              {' '}
+                              {commentResult.user.name}
+                           </div>
+                        </div>
+                        <div className="text-modal-color">
+                           {commentResult.comment}
                         </div>
                      </div>
-                     <div className="text-modal-color">
-                        Comment hereComment hereComment hereComment hereComment
-                        hereComment hereComment hereComment here
-                     </div>
-                  </div>
-                  {/* ---------- */}
-                  {comments?.length > 0 ? 'true' : 'false'}
-                  {comments?.map((commentResult) => (
-                     <h1>{commentResult.comment}</h1>
                   ))}
                   <pre
                      style={{
                         color: 'white',
                         fontSize: '1.8rem',
                      }}
-                  >
-                     {JSON.stringify(comments, 2, 4)}
-                     {console.log(comments)}
-                  </pre>
+                  ></pre>
                </div>
 
                <div
@@ -265,7 +266,7 @@ function ImageModal({
                         onChange={onChange}
                         placeholder="Comment"
                      />
-                     <input type="submit" />
+                     <input type="submit" style={{ display: 'none' }} />
                   </form>
                </div>
             </div>

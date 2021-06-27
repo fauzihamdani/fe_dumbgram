@@ -65,6 +65,7 @@ exports.registerUser = async (req, res) => {
          name: req.body.name,
          username: req.body.username,
          password: hashedPassword,
+         image: 'photo-pp.jpg',
          bio: req.body.bio,
          usernotif: null,
       });

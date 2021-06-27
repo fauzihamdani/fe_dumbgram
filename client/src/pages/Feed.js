@@ -18,18 +18,19 @@ function Feed() {
    const imageModalContext = useContext(ImageModalContext);
    const { changeImageModal } = imageModalContext;
 
-   // usestate modal
-   const [dataModal, setDataModal] = useState({
-      name: '',
-      caption: '',
-      // filename:'',
-      // comment:null,
-      // like:''
-   });
+   // // usestate modal
+   // const [dataModal, setDataModal] = useState({
+   //    name: '',
+   //    caption: '',
+   //    // filename:'',
+   //    // comment:null,
+   //    // like:''
+   // });
 
    // Feed / Post Context========================
    const postContext = useContext(PostContext);
-   const { feeds, getFeeds, loading, getFeedsbyFollowed } = postContext;
+   const { feeds, getFeeds, loading, getFeedsbyFollowed, feedByFollowed } =
+      postContext;
 
    useEffect(() => {
       getFeedsbyFollowed();
@@ -39,10 +40,7 @@ function Feed() {
    const [show, setShow] = useState(false);
 
    const handleClose = () => setShow(false);
-   const handleShow = (name, caption) => {
-      setDataModal({ ...dataModal, name: dataModal.name });
-      setDataModal({ ...dataModal, caption: dataModal.caption });
-
+   const handleShow = () => {
       setShow(true);
    };
    // ==========================================================
@@ -57,15 +55,15 @@ function Feed() {
 
                <div className="image-layout-container">
                   {/* =============== */}
-                  {feeds === !null ? (
+
+                  {feedByFollowed !== null && feedByFollowed.length !== 0 ? (
                      !loading ? (
-                        feeds.map((feed) => {
+                        feedByFollowed?.map((feed) => {
                            return (
                               <PostCard
                                  PP={PP}
                                  feed={feed}
-                                 handleShow={handleShow}
-                                 dataModal={dataModal}
+                                 // dataModal={dataModal}
                               />
                            );
                         })
@@ -73,30 +71,47 @@ function Feed() {
                         <h1>Loading..</h1>
                      )
                   ) : (
-                     <h1 style={{ color: 'white' }}>
+                     <div>
                         {' '}
-                        Follow someone in order to get Feed(s) on this page
-                     </h1>
+                        <h1>
+                           <p style={{ fontSize: '1.5rem', color: 'white' }}>
+                              {' '}
+                              Follow someone in order to get Feeds on this page
+                           </p>
+                        </h1>
+                     </div>
                   )}
-                  {/* =============== */}
 
-                  <Modal
-                     className="modal-container modal-90w"
-                     // dialogClassName="modal-90w"
-                     size="lg"
-                     show={show}
-                     onHide={handleClose}
-                     // centered
-                     rounded
-                  >
-                     <ImageModal
-                        handleClose={handleClose}
-                        name={dataModal.name}
-                        caption={dataModal.caption}
-                     />
-                  </Modal>
+                  {/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */}
+                  {/* {feeds !== null && !loading ? (
+                     !loading ? (
+                        feeds?.map((feed) => {
+                           return (
+                              <PostCard
+                                 PP={PP}
+                                 feed={feed}
+                                 dataModal={dataModal}
+                              />
+                           );
+                        })
+                     ) : (
+                        <h1>
+                           {' '}
+                           Follow someone in order to get Feeds on this page
+                        </h1>
+                     )
+                  ) : (
+                     <h1>Loading..</h1>
+                  )} */}
+                  {/* =============== */}
                </div>
             </div>
+         </div>
+         <div>
+            <pre style={{ color: 'white', fontSize: '1.5rem' }}>
+               {JSON.stringify(feedByFollowed, 2, 4)}
+            </pre>
+            {console.log(feedByFollowed)}
          </div>
       </div>
    );

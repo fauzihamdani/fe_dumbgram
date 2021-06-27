@@ -12,6 +12,9 @@ const PostState = (children) => {
       loading: true,
       comments: null,
       add: null,
+      exploreItems: null,
+      profileItems: null,
+      feedByFollowed: null,
    };
    const [state, dispatch] = useReducer(PostReducer, initialState);
 
@@ -44,7 +47,7 @@ const PostState = (children) => {
       } catch (err) {}
    };
 
-   const addLike = async (postId) => {
+   const addLike = async (postId, option, userId) => {
       console.log('running addLike');
       try {
          const config = {
@@ -56,7 +59,10 @@ const PostState = (children) => {
          const res = await API.post(`/like`, data, config);
 
          dispatch({ type: 'ADD_LIKE', payload: res.data.data });
+
+         getFeedsbyFollowed();
          getFeeds();
+         getFeedsById(userId);
       } catch (err) {}
    };
 
@@ -117,6 +123,7 @@ const PostState = (children) => {
          };
          const data = { comment: comment, postId: postId };
          const res = await API.post(`/comment`, data, config);
+         getCommentsById(postId);
 
          dispatch({ type: 'ADD_COMMENT', payload: res.data.data });
       } catch (err) {}
@@ -130,6 +137,9 @@ const PostState = (children) => {
             loading: state.loading,
             likes: state.likes,
             add: state.add,
+            exploreItems: state.exploreItems,
+            feedProfile: state.feedProfile,
+            feedByFollowed: state.feedByFollowed,
             addFeed,
             getFeeds,
             addLike,

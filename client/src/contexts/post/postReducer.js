@@ -9,18 +9,6 @@ export default (state, action) => {
          };
 
       case 'GET_FEEDS':
-         const data = {
-            id: payload.id,
-            caption: payload.caption,
-            filename: payload.filename,
-            like: payload.like,
-            userId: payload.userId,
-            createdAt: payload.createdAt,
-            updatedAt: payload.updatedAt,
-            user: payload.user,
-            comment: payload.comment,
-            likes: payload.likes,
-         };
          return {
             ...state,
             feeds: payload,
@@ -29,14 +17,14 @@ export default (state, action) => {
       case 'GET_FEEDS_BY_FOLLOWED':
          return {
             ...state,
-            feeds: payload,
+            feedByFollowed: payload,
             loading: false,
          };
 
       case 'GET_FEEDS_BY_ID':
          return {
             ...state,
-            feeds: payload,
+            feedProfile: payload,
             loading: false,
          };
 
